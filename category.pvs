@@ -1,0 +1,32 @@
+category
+ [ obj:TYPE,
+   arr:TYPE,
+   dom:[arr -> obj],
+   cod:[arr -> obj],
+   id:[obj -> arr],
+   o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr] ]: THEORY
+
+ BEGIN
+
+ ASSUMING
+
+  id_dom_cod: ASSUMPTION
+   FORALL (A:obj): dom(id(A)) = A AND cod(id(A)) = A
+
+  comp_dom_cod: ASSUMPTION
+   FORALL (f:arr,g:arr | cod(g) = dom(f)):
+    dom(f o g) = dom(g) AND cod(f o g) = cod(f)
+
+  unity_right: ASSUMPTION
+   FORALL (A:obj, f:arr | dom(f) = A): f o id(A) = f
+
+  unity_left: ASSUMPTION
+   FORALL (A:obj, f:arr | cod(f) = A): id(A) o f = f
+
+  associativity: ASSUMPTION
+   FORALL (g:arr, f:arr | cod(f) = dom(g), h:arr | dom(h) = cod(g)):
+    h o (g o f) = (h o g) o f
+
+ ENDASSUMING
+
+ END category

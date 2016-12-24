@@ -1,0 +1,19 @@
+category_3: THEORY
+ BEGIN
+
+  A, B, C: TYPE
+  object: TYPE = {A, B, C}
+  arrow: TYPE = [object,object]
+  domain: [arrow -> object] =
+   LAMBDA (x:arrow): proj_1(x)
+  codomain: [arrow -> object] =
+   LAMBDA (x:arrow): proj_2(x)
+  identity: [object -> arrow] =
+   LAMBDA (X:object): (X, X)
+  composition: [[x:arrow, {y:arrow | codomain(y) = domain(x)}] -> arrow] =
+   LAMBDA (x:arrow, y:arrow | codomain(y) = domain(x)):
+    (domain(y), codomain(x))
+    
+  IMPORTING category[object,arrow,domain,codomain,identity,composition]
+
+END category_3

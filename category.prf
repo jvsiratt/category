@@ -1,0 +1,54 @@
+(|category|
+ (|unity_right_TCC1| 0
+  (|unity_right_TCC1-1| NIL 3691523121
+   ("" (LEMMA "id_dom_cod") (("" (GRIND) NIL NIL)) NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|id_dom_cod| FORMULA-DECL NIL |category| NIL))
+   NIL))
+ (|unity_left_TCC1| 0
+  (|unity_left_TCC1-1| NIL 3691523121
+   ("" (LEMMA "id_dom_cod") (("" (GRIND) NIL NIL)) NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|id_dom_cod| FORMULA-DECL NIL |category| NIL))
+   NIL))
+ (|associativity_TCC1| 0
+  (|associativity_TCC1-1| NIL 3691523182
+   ("" (LEMMA "comp_dom_cod") (("" (GRIND) NIL NIL)) NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|comp_dom_cod| FORMULA-DECL NIL |category| NIL))
+   NIL))
+ (|associativity_TCC2| 0
+  (|associativity_TCC2-1| NIL 3691523182 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL))
+ (|associativity_TCC3| 0
+  (|associativity_TCC3-1| NIL 3691523182
+   ("" (LEMMA "comp_dom_cod") (("" (GRIND) NIL NIL)) NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|comp_dom_cod| FORMULA-DECL NIL |category| NIL))
+   NIL)))
+

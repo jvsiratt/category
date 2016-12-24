@@ -1,0 +1,19 @@
+part_poset: THEORY
+ BEGIN
+
+  xint: TYPE = {x:int | x > 0 AND x < 6}
+  leqpair: TYPE = [a:xint, {b:xint | b >= a}]
+  lesser: [leqpair -> xint] =
+   LAMBDA (x:leqpair): proj_1(x)
+  greater: [leqpair -> xint] =
+   LAMBDA (x:leqpair): proj_2(x)
+  equalpair: [xint -> leqpair] =
+   LAMBDA (X:xint): (X, X)
+  transitive:
+   [[x:leqpair, {y:leqpair | greater(y) = lesser(x)}] -> leqpair] =
+    LAMBDA (x:leqpair, y:leqpair | greater (y) = lesser(x)):
+     (lesser(y), greater(x))
+
+  IMPORTING category[xint,leqpair,lesser,greater,equalpair,transitive]
+
+ END part_poset
