@@ -29,4 +29,21 @@ category
 
  ENDASSUMING
 
+  uniqueness_of_identity: THEOREM
+   FORALL (A:obj, f:arr | dom(f) = A AND cod(f) = A):
+    ((FORALL (g:arr | dom(g) = A): g o f = g)
+      AND FORALL (g:arr | cod(g) = A): f o g = g) IMPLIES
+       f = id(A)
+
+  inverse?(f:arr, g:arr | dom(g) = cod(f) AND dom(f) = cod(g)):bool =
+   f o g = id(dom(g)) AND g o f = id(dom(f))
+
+  uniqueness_of_inverse: THEOREM
+   FORALL (A,B:obj, f:arr | dom(f) = A AND cod(f) = B):
+    FORALL (g,h:{x:arr | dom(x) = B AND cod(x) = A}):
+     (inverse?(f,g) AND inverse?(f,h)) IMPLIES
+      g = h
+
+  
+
  END category

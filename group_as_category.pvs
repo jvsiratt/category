@@ -1,0 +1,29 @@
+group_as_category
+ [ELEMENT:TYPE,
+  ID:ELEMENT,
+  o:[ELEMENT,ELEMENT -> ELEMENT]]: THEORY
+
+ BEGIN
+
+ ASSUMING
+
+  composition_with_identity:ASSUMPTION
+   FORALL (a:ELEMENT):
+    ID o a = a AND a o ID = a
+
+  associativity:ASSUMPTION
+   FORALL (a,b,c:ELEMENT):
+    a o (b o c) = (a o b) o c
+
+ ENDASSUMING
+
+  NEXUS:TYPE
+  object:TYPE = {NEXUS}
+  domain(x:ELEMENT):object = NEXUS
+  codomain(x:ELEMENT):object = NEXUS
+  identity(X:object):ELEMENT = ID
+  composition(a,b:ELEMENT):ELEMENT = a o b
+
+  IMPORTING category[object,ELEMENT,domain,codomain,identity,composition]
+
+ END group_as_category
