@@ -74,7 +74,8 @@
         NIL))
       NIL))
     NIL)
-   ((|id_dom_cod| FORMULA-DECL NIL |category| NIL)
+   ((A!1 SKOLEM-CONST-DECL "obj" |category| NIL)
+    (|id_dom_cod| FORMULA-DECL NIL |category| NIL)
     (|id| FORMAL-CONST-DECL "[obj -> arr]" |category| NIL)
     (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
     (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
@@ -94,8 +95,8 @@
   (|uniqueness_of_inverse_TCC1-1| NIL 3691764933 ("" (SUBTYPE-TCC) NIL NIL) NIL
    NIL))
  (|uniqueness_of_inverse_TCC2| 0
-  (|uniqueness_of_inverse_TCC2-1| NIL 3691764933 ("" (SUBTYPE-TCC) NIL NIL) NIL
-   NIL))
+  (|uniqueness_of_inverse_TCC2-1| NIL 3691764933 ("" (SUBTYPE-TCC) NIL NIL)
+   ((|inverse?| CONST-DECL "bool" |category| NIL)) NIL))
  (|uniqueness_of_inverse| 0
   (|uniqueness_of_inverse-1| NIL 3691762260
    ("" (SKOLEM-TYPEPRED)
@@ -149,5 +150,585 @@
     (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
     (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
     (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+   SHOSTAK))
+ (|iso?_TCC1| 0
+  (|iso?_TCC1-1| NIL 3691868596 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL))
+ (|isomorphic_reflexive| 0
+  (|isomorphic_reflexive-1| NIL 3691869569
+   ("" (SKOLEM!)
+    (("" (EXPAND "isomorphic?")
+      (("" (INSTANTIATE 1 "id(A!1)")
+        (("1" (EXPAND "iso?")
+          (("1" (GRIND)
+            (("1" (LEMMA "id_dom_cod")
+              (("1" (INSTANTIATE -1 "A!1")
+                (("1" (FLATTEN)
+                  (("1" (REPLACE -1 1)
+                    (("1" (LEMMA "unity_right")
+                      (("1" (INSTANTIATE -1 ("A!1" "id(A!1)"))
+                        (("1" (PROPAX) NIL NIL) ("2" (PROPAX) NIL NIL)) NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL)
+             ("2" (LEMMA "id_dom_cod")
+              (("2" (INSTANTIATE -1 "A!1")
+                (("2" (FLATTEN)
+                  (("2" (REPLACE -2 1)
+                    (("2" (LEMMA "unity_right")
+                      (("2" (INSTANTIATE -1 ("A!1" "id(A!1)"))
+                        (("1" (PROPAX) NIL NIL) ("2" (PROPAX) NIL NIL)) NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL)
+             ("3" (LEMMA "id_dom_cod") (("3" (GRIND) NIL NIL)) NIL))
+            NIL))
+          NIL)
+         ("2" (LEMMA "id_dom_cod") (("2" (GRIND) NIL NIL)) NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|isomorphic?| CONST-DECL "bool" |category| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|id| FORMAL-CONST-DECL "[obj -> arr]" |category| NIL)
+    (|iso?| CONST-DECL "bool" |category| NIL)
+    (|id_dom_cod| FORMULA-DECL NIL |category| NIL)
+    (|unity_right| FORMULA-DECL NIL |category| NIL)
+    (A!1 SKOLEM-CONST-DECL "obj" |category| NIL))
+   SHOSTAK))
+ (|isomorphic_symmetry| 0
+  (|isomorphic_symmetry-1| NIL 3691868597
+   ("" (SKOLEM!)
+    (("" (FLATTEN)
+      (("" (EXPAND "isomorphic?")
+        (("" (SKOLEM-TYPEPRED)
+          (("" (COPY -3)
+            (("" (EXPAND "iso?" -4)
+              (("" (SKOLEM-TYPEPRED)
+                (("" (FLATTEN)
+                  (("" (INSTANTIATE 1 "g!1")
+                    (("" (EXPAND "iso?")
+                      (("" (INSTANTIATE 1 "f!1") (("" (GRIND) NIL NIL)) NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|iso?| CONST-DECL "bool" |category| NIL)
+    (|isomorphic?| CONST-DECL "bool" |category| NIL))
+   SHOSTAK))
+ (|isomorphic_transitive| 0
+  (|isomorphic_transitive-1| NIL 3691869986
+   ("" (SKOLEM!)
+    (("" (FLATTEN)
+      (("" (EXPAND "isomorphic?")
+        (("" (SKOLEM -1 "f")
+          (("" (SKOLEM -2 "g")
+            (("" (INSTANTIATE 1 "g o f")
+              (("1" (EXPAND "iso?")
+                (("1" (SKOLEM -1 "f!1")
+                  (("1" (SKOLEM -2 "g!1")
+                    (("1" (INSTANTIATE 1 "(f!1 o g!1)")
+                      (("1" (LEMMA "associativity")
+                        (("1" (INSTANTIATE -1 ("g" "f" "(f!1 o g!1)"))
+                          (("1" (REPLACE -1 1)
+                            (("1" (LEMMA "associativity")
+                              (("1" (INSTANTIATE -1 ("g!1" "g" "f!1"))
+                                (("1" (REPLACE -1 1 RL)
+                                  (("1" (FLATTEN)
+                                    (("1" (REPLACE -6 1)
+                                      (("1" (LEMMA "comp_dom_cod")
+                                        (("1" (INSTANTIATE -1 ("g" "f"))
+                                          (("1" (FLATTEN)
+                                            (("1" (REPLACE -1 1)
+                                              (("1" (LEMMA "unity_left")
+                                                (("1"
+                                                  (INSTANTIATE -1
+                                                   ("dom(g)" "f"))
+                                                  (("1" (LEMMA "associativity")
+                                                    (("1"
+                                                      (INSTANTIATE -1
+                                                       ("id(dom(g))" "f"
+                                                        "f!1"))
+                                                      (("1" (REPLACE -1 1 RL)
+                                                        (("1" (REPLACE -2 1)
+                                                          (("1"
+                                                            (REPLACE -8 1 RL)
+                                                            (("1"
+                                                              (LEMMA
+                                                               "comp_dom_cod")
+                                                              (("1"
+                                                                (INSTANTIATE -1
+                                                                 ("g" "f"))
+                                                                (("1" (FLATTEN)
+                                                                  (("1"
+                                                                    (REPLACE -2
+                                                                             1)
+                                                                    (("1"
+                                                                      (LEMMA
+                                                                       "associativity")
+                                                                      (("1"
+                                                                        (INSTANTIATE
+                                                                         -1
+                                                                         ("f!1"
+                                                                          "g!1"
+                                                                          "g o f"))
+                                                                        (("1"
+                                                                          (REPLACE
+                                                                           -1
+                                                                           1)
+                                                                          (("1"
+                                                                            (LEMMA
+                                                                             "associativity")
+                                                                            (("1"
+                                                                              (INSTANTIATE
+                                                                               -1
+                                                                               ("f"
+                                                                                "f!1"
+                                                                                "g"))
+                                                                              (("1"
+                                                                                (REPLACE
+                                                                                 -1
+                                                                                 1
+                                                                                 RL)
+                                                                                (("1"
+                                                                                  (REPLACE
+                                                                                   -11
+                                                                                   1)
+                                                                                  (("1"
+                                                                                    (LEMMA
+                                                                                     "associativity")
+                                                                                    (("1"
+                                                                                      (INSTANTIATE
+                                                                                       -1
+                                                                                       ("id(cod(f))"
+                                                                                        "g!1"
+                                                                                        "g"))
+                                                                                      (("1"
+                                                                                        (REPLACE
+                                                                                         -1
+                                                                                         1
+                                                                                         RL)
+                                                                                        (("1"
+                                                                                          (LEMMA
+                                                                                           "unity_left")
+                                                                                          (("1"
+                                                                                            (INSTANTIATE
+                                                                                             -1
+                                                                                             ("cod(f)"
+                                                                                              "g!1"))
+                                                                                            (("1"
+                                                                                              (REPLACE
+                                                                                               -1
+                                                                                               1)
+                                                                                              (("1"
+                                                                                                (PROPAX)
+                                                                                                NIL
+                                                                                                NIL))
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL)
+                                                                                       ("2"
+                                                                                        (LEMMA
+                                                                                         "id_dom_cod")
+                                                                                        (("2"
+                                                                                          (INSTANTIATE
+                                                                                           -1
+                                                                                           "cod(f)")
+                                                                                          (("2"
+                                                                                            (FLATTEN)
+                                                                                            (("2"
+                                                                                              (REPLACE
+                                                                                               -2
+                                                                                               1)
+                                                                                              (("2"
+                                                                                                (LEMMA
+                                                                                                 "comp_dom_cod")
+                                                                                                (("2"
+                                                                                                  (INSTANTIATE
+                                                                                                   -1
+                                                                                                   ("g"
+                                                                                                    "f"))
+                                                                                                  (("2"
+                                                                                                    (FLATTEN)
+                                                                                                    (("2"
+                                                                                                      (LEMMA
+                                                                                                       "unity_left")
+                                                                                                      (("2"
+                                                                                                        (INSTANTIATE
+                                                                                                         -1
+                                                                                                         ("cod(f)"
+                                                                                                          "g!1"))
+                                                                                                        (("2"
+                                                                                                          (LEMMA
+                                                                                                           "associativity")
+                                                                                                          (("2"
+                                                                                                            (INSTANTIATE
+                                                                                                             -1
+                                                                                                             ("id(cod(f))"
+                                                                                                              "g!1"
+                                                                                                              "g"))
+                                                                                                            (("1"
+                                                                                                              (REPLACE
+                                                                                                               -1
+                                                                                                               2
+                                                                                                               RL)
+                                                                                                              (("1"
+                                                                                                                (LEMMA
+                                                                                                                 "unity_left")
+                                                                                                                (("1"
+                                                                                                                  (INSTANTIATE
+                                                                                                                   -1
+                                                                                                                   ("cod(f)"
+                                                                                                                    "g!1"))
+                                                                                                                  (("1"
+                                                                                                                    (REPLACE
+                                                                                                                     -1
+                                                                                                                     2)
+                                                                                                                    (("1"
+                                                                                                                      (PROPAX)
+                                                                                                                      NIL
+                                                                                                                      NIL))
+                                                                                                                    NIL))
+                                                                                                                  NIL))
+                                                                                                                NIL))
+                                                                                                              NIL)
+                                                                                                             ("2"
+                                                                                                              (LEMMA
+                                                                                                               "unity_right")
+                                                                                                              (("2"
+                                                                                                                (INSTANTIATE
+                                                                                                                 -1
+                                                                                                                 ("cod(f)"
+                                                                                                                  "g"))
+                                                                                                                (("2"
+                                                                                                                  (REPLACE
+                                                                                                                   -1
+                                                                                                                   3)
+                                                                                                                  (("2"
+                                                                                                                    (PROPAX)
+                                                                                                                    NIL
+                                                                                                                    NIL))
+                                                                                                                  NIL))
+                                                                                                                NIL))
+                                                                                                              NIL))
+                                                                                                            NIL))
+                                                                                                          NIL))
+                                                                                                        NIL))
+                                                                                                      NIL))
+                                                                                                    NIL))
+                                                                                                  NIL))
+                                                                                                NIL))
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL)
+                                                                                       ("3"
+                                                                                        (LEMMA
+                                                                                         "unity_right")
+                                                                                        (("3"
+                                                                                          (INSTANTIATE
+                                                                                           -1
+                                                                                           ("cod(f)"
+                                                                                            "g"))
+                                                                                          (("3"
+                                                                                            (REPLACE
+                                                                                             -1
+                                                                                             2)
+                                                                                            (("3"
+                                                                                              (PROPAX)
+                                                                                              NIL
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL))
+                                                                                    NIL))
+                                                                                  NIL))
+                                                                                NIL))
+                                                                              NIL))
+                                                                            NIL))
+                                                                          NIL)
+                                                                         ("2"
+                                                                          (LEMMA
+                                                                           "associativity")
+                                                                          (("2"
+                                                                            (INSTANTIATE
+                                                                             -1
+                                                                             ("f!1"
+                                                                              "g!1"
+                                                                              "g o f"))
+                                                                            (("1"
+                                                                              (REPLACE
+                                                                               -1
+                                                                               2)
+                                                                              (("1"
+                                                                                (LEMMA
+                                                                                 "associativity")
+                                                                                (("1"
+                                                                                  (INSTANTIATE
+                                                                                   -1
+                                                                                   ("f"
+                                                                                    "f!1"
+                                                                                    "g"))
+                                                                                  (("1"
+                                                                                    (REPLACE
+                                                                                     -1
+                                                                                     2
+                                                                                     RL)
+                                                                                    (("1"
+                                                                                      (REPLACE
+                                                                                       -11
+                                                                                       2)
+                                                                                      (("1"
+                                                                                        (LEMMA
+                                                                                         "unity_right")
+                                                                                        (("1"
+                                                                                          (INSTANTIATE
+                                                                                           -1
+                                                                                           ("cod(f)"
+                                                                                            "g"))
+                                                                                          (("1"
+                                                                                            (REPLACE
+                                                                                             -1
+                                                                                             2)
+                                                                                            (("1"
+                                                                                              (PROPAX)
+                                                                                              NIL
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL))
+                                                                                    NIL))
+                                                                                  NIL))
+                                                                                NIL))
+                                                                              NIL)
+                                                                             ("2"
+                                                                              (LEMMA
+                                                                               "associativity")
+                                                                              (("2"
+                                                                                (INSTANTIATE
+                                                                                 -1
+                                                                                 ("f!1"
+                                                                                  "g!1"
+                                                                                  "g o f"))
+                                                                                (("1"
+                                                                                  (REPLACE
+                                                                                   -1)
+                                                                                  (("1"
+                                                                                    (LEMMA
+                                                                                     "associativity")
+                                                                                    (("1"
+                                                                                      (INSTANTIATE
+                                                                                       -1
+                                                                                       ("f"
+                                                                                        "f!1"
+                                                                                        "g"))
+                                                                                      (("1"
+                                                                                        (REPLACE
+                                                                                         -1
+                                                                                         3
+                                                                                         RL)
+                                                                                        (("1"
+                                                                                          (REPLACE
+                                                                                           -11)
+                                                                                          (("1"
+                                                                                            (LEMMA
+                                                                                             "unity_right")
+                                                                                            (("1"
+                                                                                              (INSTANTIATE
+                                                                                               -1
+                                                                                               ("cod(f)"
+                                                                                                "g"))
+                                                                                              (("1"
+                                                                                                (REPLACE
+                                                                                                 -1)
+                                                                                                (("1"
+                                                                                                  (PROPAX)
+                                                                                                  NIL
+                                                                                                  NIL))
+                                                                                                NIL))
+                                                                                              NIL))
+                                                                                            NIL))
+                                                                                          NIL))
+                                                                                        NIL))
+                                                                                      NIL))
+                                                                                    NIL))
+                                                                                  NIL)
+                                                                                 ("2"
+                                                                                  (POSTPONE)
+                                                                                  NIL
+                                                                                  NIL))
+                                                                                NIL))
+                                                                              NIL))
+                                                                            NIL))
+                                                                          NIL))
+                                                                        NIL))
+                                                                      NIL))
+                                                                    NIL))
+                                                                  NIL))
+                                                                NIL))
+                                                              NIL))
+                                                            NIL))
+                                                          NIL))
+                                                        NIL)
+                                                       ("2" (POSTPONE) NIL
+                                                        NIL))
+                                                      NIL))
+                                                    NIL))
+                                                  NIL))
+                                                NIL))
+                                              NIL))
+                                            NIL))
+                                          NIL))
+                                        NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL)
+                           ("2" (POSTPONE) NIL NIL))
+                          NIL))
+                        NIL)
+                       ("2" (POSTPONE) NIL NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL)
+               ("2" (POSTPONE) NIL NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   NIL SHOSTAK))
+ (|epic?_TCC1| 0
+  (|epic?_TCC1-1| NIL 3691876211 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL))
+ (|epic?_TCC2| 0
+  (|epic?_TCC2-1| NIL 3691876211 ("" (SUBTYPE-TCC) NIL NIL) NIL NIL))
+ (|iso_monic_epic| 0
+  (|iso_monic_epic-1| NIL 3691876323
+   ("" (SKOLEM 1 "f")
+    (("" (BDDSIMP)
+      (("1" (EXPAND "iso?")
+        (("1" (EXPAND "epic?")
+          (("1" (SKOLEM -1 "f!1")
+            (("1" (SKOLEM 1 ("A" "g" "h"))
+              (("1" (FLATTEN)
+                (("1" (LEMMA "unity_right")
+                  (("1" (INSTANTIATE -1 ("cod(f)" "g"))
+                    (("1" (REPLACE -1 1 RL)
+                      (("1" (REPLACE -2 1 RL)
+                        (("1" (LEMMA "associativity")
+                          (("1" (INSTANTIATE -1 ("f" "f!1" "g"))
+                            (("1" (REPLACE -1)
+                              (("1" (REPLACE -5)
+                                (("1" (LEMMA "associativity")
+                                  (("1" (INSTANTIATE -1 ("f" "f!1" "h"))
+                                    (("1" (REPLACE -1 1 RL)
+                                      (("1" (REPLACE -4)
+                                        (("1" (LEMMA "unity_right")
+                                          (("1" (INSTANTIATE -1 ("cod(f)" "h"))
+                                            (("1" (PROPAX) NIL NIL)) NIL))
+                                          NIL))
+                                        NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL)
+       ("2" (EXPAND "iso?")
+        (("2" (EXPAND "monic?")
+          (("2" (SKOLEM -1 "f!1")
+            (("2" (SKOLEM 1 ("A" "g" "h"))
+              (("2" (FLATTEN)
+                (("2" (LEMMA "unity_left")
+                  (("2" (INSTANTIATE -1 ("dom(f)" "g"))
+                    (("2" (REPLACE -1 1 RL)
+                      (("2" (REPLACE -3 1 RL)
+                        (("2" (LEMMA "associativity")
+                          (("2" (INSTANTIATE -1 ("f" "g" "f!1"))
+                            (("2" (REPLACE -1 1 RL)
+                              (("2" (REPLACE -5)
+                                (("2" (LEMMA "associativity")
+                                  (("2" (INSTANTIATE -1 ("f" "h" "f!1"))
+                                    (("2" (REPLACE -1)
+                                      (("2" (REPLACE -5)
+                                        (("2" (LEMMA "unity_left")
+                                          (("2" (INSTANTIATE -1 ("dom(f)" "h"))
+                                            (("2" (PROPAX) NIL NIL)) NIL))
+                                          NIL))
+                                        NIL))
+                                      NIL))
+                                    NIL))
+                                  NIL))
+                                NIL))
+                              NIL))
+                            NIL))
+                          NIL))
+                        NIL))
+                      NIL))
+                    NIL))
+                  NIL))
+                NIL))
+              NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|epic?| CONST-DECL "bool" |category| NIL)
+    (|unity_right| FORMULA-DECL NIL |category| NIL)
+    (|obj| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|arr| FORMAL-TYPE-DECL NIL |category| NIL)
+    (|cod| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|dom| FORMAL-CONST-DECL "[arr -> obj]" |category| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (AND CONST-DECL "[bool, bool -> bool]" |booleans| NIL)
+    (|associativity| FORMULA-DECL NIL |category| NIL)
+    (|iso?| CONST-DECL "bool" |category| NIL)
+    (|monic?| CONST-DECL "bool" |category| NIL)
+    (|unity_left| FORMULA-DECL NIL |category| NIL))
    SHOSTAK)))
 

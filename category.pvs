@@ -44,6 +44,38 @@ category
      (inverse?(f,g) AND inverse?(f,h)) IMPLIES
       g = h
 
-  
+  iso?(f:arr):bool =
+   EXISTS (g:arr | dom(g) = cod(f) AND dom(f) = cod(g)):
+    f o g = id(cod(f)) AND g o f = id(dom(f))
+
+  isomorphic?(A,B:obj):bool =
+   EXISTS (f:arr | dom(f) = A AND cod(f) = B):
+    iso?(f)
+
+  isomorphic_reflexive: THEOREM
+   FORALL (A:obj):
+    isomorphic?(A,A)
+
+  isomorphic_symmetry: THEOREM
+   FORALL (A,B:obj):
+    isomorphic?(A,B) IMPLIES isomorphic?(B,A)
+
+  isomorphic_transitive: THEOREM
+   FORALL (A,B,C:obj):
+    (isomorphic?(A,B) AND isomorphic?(B,C)) IMPLIES
+     isomorphic?(A,C)
+
+  monic?(f:arr):bool =
+   FORALL (A:obj, g,h:{x:arr | dom(x) = A AND cod(x) = dom(f)}):
+    f o g = f o h IMPLIES g = h
+
+  epic?(f:arr):bool =
+   FORALL (A:obj, g,h:{x:arr | cod(x) = A AND dom(x) = cod(f)}):
+    g o f = h o f IMPLIES g = h
+
+  iso_monic_epic: THEOREM
+   FORALL (f:arr):
+    iso?(f) IMPLIES
+     (monic?(f) AND epic?(f))
 
  END category
