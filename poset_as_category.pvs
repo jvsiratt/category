@@ -1,0 +1,39 @@
+poset_as_category
+ [ ELEMENT:TYPE,
+   <=:[ELEMENT,ELEMENT -> bool]]: THEORY
+
+ BEGIN
+ 
+  ASSUMING
+
+   reflexive: ASSUMPTION
+    FORALL (x:ELEMENT):
+     x <= x
+
+   transitive: ASSUMPTION
+    FORALL (x,y,z:ELEMENT):
+     ( x <= y AND y <= z) IMPLIES
+      x <= z
+
+   symmetric: ASSUMPTION
+    FORALL (x,y:ELEMENT):
+     x <= y IMPLIES NOT(y <= x)
+
+  ENDASSUMING
+
+  object:TYPE = ELEMENT
+  pair:TYPE = [a:object, {b:object | a <= b}]
+  lesser:[pair -> object] =
+   LAMBDA (x:pair): proj_1(x)
+  greater:[pair -> object] =
+   LAMBDA (x:pair): proj_2(x)
+  equalpair:[object -> pair] =
+   LAMBDA (X:object): (X,X)
+  composition:
+   [[x:pair, {y:pair | greater(y) = lesser(x)}] -> pair] =
+    LAMBDA (x:pair, y:pair | greater(y) = lesser(x)):
+     (lesser(y),greater(x))
+
+  IMPORTING category[object,pair,lesser,greater,equalpair,composition]
+
+ END poset_as_category
