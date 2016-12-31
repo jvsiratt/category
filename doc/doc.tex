@@ -9,42 +9,19 @@
 
 \maketitle
 
-\section{Main Files}
+\section{Current}
 
-These files make up the core of the formalization.
+\subsection{category}
 
-\subsection{category.pvs}
+The main category files contains the assumptions, definitions, and theorems of category theory.
 
-The main category file is parameterized by the data necessary to build a specific category.  The assumptions section includes the basic axioms of category theory, and the body contains category theory results.
+\subsection{group\_as\_category}
 
-NEXT UP: define isos, epis, and monos, then prove the proposition "If an arrow is both epi and mono, then it is iso."
+Group interface to the category files.
 
-\subsection{group\_as\_category.pvs}
+\subsection{poset\_as\_category}
 
-This is an abstraction from \texttt{example\_particular\_group.pvs} that is paramaterized.  It acts as a simple interface for casting a group in category theory terms.
+Poset interface to the category files
 
-\section{Example Files}
-
-These files are particular examples of categories used to both test the efficacy of the formalization in \texttt{category.pvs} and as stepping stones toward fully parameterized abstract interfaces for instantiating certain types of categories.
-
-\subsection{example\_category\_3.pvs}
-
-This is the simple category containing three objects, $A, B, C$, and the arrows $f:A\to B, g:B\to C, g\circ f:A\to C$. There will be no abstraction from this file since instantiating a category by sets works directly with the base file.
-
-\subsection{example\_particular\_poset.pvs}
-
-This is the simple poset category where the objects are the integers $\{1,2,3,4,5\}$ with each arrow representing a less-than-or-equal-to relation. This should lead to an abstract interface for poset categories (not categories of posets, which would be subcategories of the category of sets).
-
-NEXT UP: Abstract to \texttt{poset\_as\_category.pvs}.
-
-\subsection{example\_int\_sets.pvs}
-
-This is a subcategory of the category of sets containing sets of integers and functions between them.  Currently this is unfinished, but should lead to an abstract interface for subcategories of the category of sets.
-
-NEXT UP: Rework identity and composition type signatures to try to simplify unity and associativity assumption tccs.
-
-\subsection{example\_particular\_group.pvs}
-
-This is an implementation of the group of integers under addition. This abstracted directly to \texttt{groups\_as\_categories.pvs}.
 
 \end{document}

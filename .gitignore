@@ -1,3 +1,6 @@
+**/test*.*
+**/example*.*
+**/orphaned*.*
 **/*.*~
 **/*.bin
 **/*.aux
