@@ -1,10 +1,10 @@
 category
- [ obj:TYPE,
-   arr:TYPE,
-   dom:[arr -> obj],
-   cod:[arr -> obj],
-   id:[obj -> arr],
-   o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr] ]: THEORY
+ [ obj: TYPE,
+   arr: TYPE,
+   dom: [arr -> obj],
+   cod: [arr -> obj],
+   id:  [obj -> arr],
+   o:   [ [f:arr, {g:arr | cod(g) = dom(f)}] -> arr] ]: THEORY
 
  BEGIN
 
@@ -14,7 +14,7 @@ category
    FORALL (A:obj): dom(id(A)) = A AND cod(id(A)) = A
 
   comp_dom_cod: ASSUMPTION
-   FORALL (f:arr,g:arr | cod(g) = dom(f)):
+   FORALL (f:arr, g:arr | cod(g) = dom(f)):
     dom(f o g) = dom(g) AND cod(f o g) = cod(f)
 
   unity_right: ASSUMPTION
@@ -31,45 +31,39 @@ category
 
   uniqueness_of_identity: THEOREM
    FORALL (A:obj, f:arr | dom(f) = A AND cod(f) = A):
-    ((FORALL (g:arr | dom(g) = A): g o f = g)
-      AND FORALL (g:arr | cod(g) = A): f o g = g) IMPLIES
-       f = id(A)
+    (FORALL (g:arr | dom(g) = A): g o f = g AND
+     FORALL (g:arr | cod(g) = A): f o g = g) IMPLIES f = id(A)
 
-  inverse?(f:arr, g:arr | dom(g) = cod(f) AND dom(f) = cod(g)):bool =
+  inverse?(f:arr, g:arr | dom(g) = cod(f) AND dom(f) = cod(g)): bool =
    f o g = id(dom(g)) AND g o f = id(dom(f))
 
   uniqueness_of_inverse: THEOREM
    FORALL (A,B:obj, f:arr | dom(f) = A AND cod(f) = B):
     FORALL (g,h:{x:arr | dom(x) = B AND cod(x) = A}):
-     (inverse?(f,g) AND inverse?(f,h)) IMPLIES
-      g = h
+     (inverse?(f,g) AND inverse?(f,h)) IMPLIES g = h
 
-  iso?(f:arr):bool =
+  iso?(f:arr): bool =
    EXISTS (g:arr | dom(g) = cod(f) AND dom(f) = cod(g)):
     f o g = id(cod(f)) AND g o f = id(dom(f))
 
-  isomorphic?(A,B:obj):bool =
-   EXISTS (f:arr | dom(f) = A AND cod(f) = B):
-    iso?(f)
+  isomorphic?(A,B:obj): bool =
+   EXISTS (f:arr | dom(f) = A AND cod(f) = B): iso?(f)
 
   isomorphic_reflexive: THEOREM
-   FORALL (A:obj):
-    isomorphic?(A,A)
+   FORALL (A:obj): isomorphic?(A,A)
 
   isomorphic_symmetry: THEOREM
-   FORALL (A,B:obj):
-    isomorphic?(A,B) IMPLIES isomorphic?(B,A)
+   FORALL (A,B:obj): isomorphic?(A,B) IMPLIES isomorphic?(B,A)
 
   isomorphic_transitive: THEOREM
    FORALL (A,B,C:obj):
-    (isomorphic?(A,B) AND isomorphic?(B,C)) IMPLIES
-     isomorphic?(A,C)
+    (isomorphic?(A,B) AND isomorphic?(B,C)) IMPLIES isomorphic?(A,C)
 
-  monic?(f:arr):bool =
+  monic?(f:arr): bool =
    FORALL (A:obj, g,h:{x:arr | dom(x) = A AND cod(x) = dom(f)}):
     f o g = f o h IMPLIES g = h
 
-  epic?(f:arr):bool =
+  epic?(f:arr): bool =
    FORALL (A:obj, g,h:{x:arr | cod(x) = A AND dom(x) = cod(f)}):
     g o f = h o f IMPLIES g = h
 
@@ -78,4 +72,12 @@ category
     iso?(f) IMPLIES
      (monic?(f) AND epic?(f))
 
- END category
+  initial?(A:obj): bool =
+   FORALL (B:obj): EXISTS (f:arr | dom(f) = A AND cod(f) = B):
+    FORALL (g:arr | dom(g) = A AND cod(g) = B): g = f
+
+  teminal?(A:obj): bool =
+   FORALL (B:obj): EXISTS (f:arr | dom(f) = B AND cod(f) = A):
+    FORALL (g:arr | dom(g) = B AND cod(g) = A): g = f
+
+END category
