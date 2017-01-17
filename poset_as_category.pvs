@@ -1,39 +1,30 @@
-poset_as_category
- [ ELEMENT:TYPE,
-   <=:[ELEMENT,ELEMENT -> bool]]: THEORY
+poset_as_category [ ELEMENT: TYPE,
+                     <=: [ELEMENT, ELEMENT -> bool] ]: THEORY
+BEGIN
 
- BEGIN
- 
-  ASSUMING
+ ASSUMING
 
-   reflexive: ASSUMPTION
+  reflexive: ASSUMPTION
     FORALL (x:ELEMENT):
-     x <= x
+      x <= x
 
-   transitive: ASSUMPTION
+  transitive: ASSUMPTION
     FORALL (x,y,z:ELEMENT):
-     ( x <= y AND y <= z) IMPLIES
-      x <= z
+      ( x <= y AND y <= z ) IMPLIES x <= z
 
-   symmetric: ASSUMPTION
+  antisymmetric: ASSUMPTION
     FORALL (x,y:ELEMENT):
-     x <= y IMPLIES NOT(y <= x)
+      ( x <= y AND y <= x) IMPLIES x = y
 
-  ENDASSUMING
+ ENDASSUMING
 
-  object:TYPE = ELEMENT
-  pair:TYPE = [a:object, {b:object | a <= b}]
-  lesser:[pair -> object] =
-   LAMBDA (x:pair): proj_1(x)
-  greater:[pair -> object] =
-   LAMBDA (x:pair): proj_2(x)
-  equalpair:[object -> pair] =
-   LAMBDA (X:object): (X,X)
-  composition:
-   [[x:pair, {y:pair | greater(y) = lesser(x)}] -> pair] =
-    LAMBDA (x:pair, y:pair | greater(y) = lesser(x)):
-     (lesser(y),greater(x))
+  obj: TYPE = ELEMENT
+  arr: TYPE = [a:ELEMENT, {b:ELEMENT | a <= b}]
+  dom(f:arr): obj = proj_1(f)
+  cod(f:arr): obj = proj_2(f)
+  id(A:obj): arr = (A, A)
+  compose(f:arr, g:arr | cod(g) = dom(f)): arr = (dom(g), cod(f))
 
-  IMPORTING category[object,pair,lesser,greater,equalpair,composition]
+  IMPORTING category[obj, arr, dom, cod, id, compose]
 
- END poset_as_category
+END poset_as_category

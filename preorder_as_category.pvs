@@ -1,32 +1,26 @@
-preorder_as_category
- [ ELEMENT: TYPE,
-   ~:       [ELEMENT, ELEMENT -> bool] ]: THEORY
-
- BEGIN
+preorder_as_category [ ELEMENT: TYPE,
+                       ~: [ELEMENT, ELEMENT -> bool] ]: THEORY
+BEGIN
 
  ASSUMING
 
- reflexive: ASSUMPTION
-  FORALL (x:ELEMENT): x ~ x
+  reflexive: ASSUMPTION
+    FORALL (x:ELEMENT):
+      x ~ x
 
- transitive: ASSUMPTION
-  FORALL (x,y,z:ELEMENT):
-   ( x ~ y AND y ~ z) IMPLIES x ~ z
+  transitive: ASSUMPTION
+    FORALL (x,y,z:ELEMENT):
+     ( x ~ y AND y ~ z) IMPLIES x ~ z
 
  ENDASSUMING
 
-  object: TYPE = ELEMENT
-  pair:   TYPE = [a:object, {b:object | a ~ b}]
-  prior:  [pair -> object] =
-   LAMBDA (x:pair): proj_1(x)
-  post:   [pair -> object] =
-   LAMBDA (x:pair): proj_2(x)
-  self:   [object -> pair] =
-   LAMBDA (X:object): (X, X)
-  compose:[ [x:pair, {y:pair | post(y) = prior(x)}] -> pair] =
-   LAMBDA (x:pair, y:pair | post(y) = prior(x)):
-    (prior(y), post(x))
+  obj: TYPE = ELEMENT
+  arr: TYPE = [a:ELEMENT, {b:ELEMENT | a ~ b}]
+  dom(f:arr): obj = proj_1(f)
+  cod(f:arr): obj = proj_2(f)
+  id(A:obj): arr = (A, A)
+  compose(f:arr, g:arr | cod(g) = dom(f)): arr = (dom(g), cod(f))
 
-  IMPORTING category[object, pair, prior, post, self, compose]
+  IMPORTING category[obj, arr, dom, cod, id, compose]
 
- END preorder_as_category
+END preorder_as_category

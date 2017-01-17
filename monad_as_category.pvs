@@ -1,4 +1,4 @@
-group_as_category [ ELEMENT: TYPE,
+monad_as_category [ ELEMENT: TYPE,
                     ID: ELEMENT,
 		    o: [ELEMENT, ELEMENT -> ELEMENT] ]: THEORY
 
@@ -14,10 +14,6 @@ BEGIN
    FORALL (a,b,c:ELEMENT):
     a o (b o c) = (a o b) o c
 
-  exists_inverse: ASSUMPTION
-   FORALL (a:ELEMENT): EXISTS(a!:ELEMENT):
-    a o a! = ID AND a! o a = ID
-
  ENDASSUMING
 
   NEXUS: TYPE
@@ -30,4 +26,4 @@ BEGIN
 
   IMPORTING category [obj, arr, dom, cod, id, compose]
 
-END group_as_category
+END monad_as_category
