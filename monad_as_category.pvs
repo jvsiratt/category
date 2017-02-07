@@ -10,7 +10,7 @@ BEGIN
    FORALL (a:ELEMENT):
     ID o a = a AND a o ID = a
 
-  associativity: ASSUMPTION % This duplicates cat assump
+  associativity: ASSUMPTION % This fulfills cat assumpt
    FORALL (a,b,c:ELEMENT):
     a o (b o c) = (a o b) o c
 

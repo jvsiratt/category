@@ -26,55 +26,89 @@ BEGIN
 
  ENDASSUMING
 
-  uniqueness_of_identity: THEOREM
-   FORALL (A:obj, f:arr | dom(f) = A AND cod(f) = A):
-    (FORALL (g:arr | dom(g) = A): g o f = g AND
-     FORALL (g:arr | cod(g) = A): f o g = g) IMPLIES f = id(A)
+% Defintion. We say that f and g are composable when the codomain
+%            of g is the domain of f.  We write f o g.
+  composable?(f,g:arr): bool=
+   cod(g) = dom(f)
 
-  inverse?(f:arr, g:arr | dom(g) = cod(f) AND dom(f) = cod(g)): bool =
+% Definition. We say that an arrow is to A if A is its codomain.
+  to?(f:arr, A:obj): bool =
+   cod(f) = A
+% Definigion. We say that an arrow is from A if A is its domain.
+  from?(f:arr, A:obj): bool =
+   dom(f) = A
+
+% Theorem. Each object has a unique identity arrow.
+  uniqueness_of_identity: THEOREM
+   FORALL (A:obj, f:arr | from?(f,A) AND to?(f,A)):
+    (FORALL (g:arr | from?(g,A)): g o f = g AND
+     FORALL (g:arr | to?(g,A)): f o g = g) IMPLIES f = id(A)
+
+% Definition. Let f:A->B and g:B->A be arrows.  If f o g = id(B)
+%             and g o f = id(A), then g is the inverse of f.
+  inverse?(f:arr, g:arr | composable?(g,f) AND composable?(f,g)): bool =
    f o g = id(dom(g)) AND g o f = id(dom(f))
 
+% Theorem.  Let f be an arrow.  If f has an inverse, then it is unique.
   uniqueness_of_inverse: THEOREM
-   FORALL (A,B:obj, f:arr | dom(f) = A AND cod(f) = B):
-    FORALL (g,h:{x:arr | dom(x) = B AND cod(x) = A}):
+   FORALL (A,B:obj, f:arr | from?(f,A) AND to?(f,B)):
+    FORALL (g,h:{x:arr | from?(x,B) AND to?(x,A)}):
      (inverse?(f,g) AND inverse?(f,h)) IMPLIES g = h
 
+% Definition. Let f:A->B be an arrow. If f has an inverse, then
+%             f is an isomorphism.
   iso?(f:arr): bool =
-   EXISTS (g:arr | dom(g) = cod(f) AND dom(f) = cod(g)):
+   EXISTS (g:arr | composable?(f,g) AND composable?(g,f)):
     f o g = id(cod(f)) AND g o f = id(dom(f))
 
+% Definition. Let A and B be objects.  If there exists an f:A->B
+%             f is an isomorphism, then A is isomorphic to B.
   isomorphic?(A,B:obj): bool =
    EXISTS (f:arr | dom(f) = A AND cod(f) = B): iso?(f)
 
+% Theorem. Each object A is isomorphic to itself.
   isomorphic_reflexive: THEOREM
    FORALL (A:obj): isomorphic?(A,A)
 
+% Theorem. Let A and B be objects.  If A is isomorphic to B, then
+%          B is isomorphic to A.
   isomorphic_symmetry: THEOREM
    FORALL (A,B:obj): isomorphic?(A,B) IMPLIES isomorphic?(B,A)
 
+% Theorem. Let A, B, and C be objects such as A is isomorphic to B
+%          and B is isomorphic to C. Then A is isomorphic to C.
   isomorphic_transitive: THEOREM
    FORALL (A,B,C:obj):
     (isomorphic?(A,B) AND isomorphic?(B,C)) IMPLIES isomorphic?(A,C)
 
+% Definition. Let f:B->C be an arrow.  We say f is monic when, for each
+%             g:A->B and h:A->B, f o g = f o h implies that g = h.
   monic?(f:arr): bool =
-   FORALL (A:obj, g,h:{x:arr | dom(x) = A AND cod(x) = dom(f)}):
+   FORALL (A:obj, g,h:{x:arr | from?(x,A) AND to?(x,dom(f))}):
     f o g = f o h IMPLIES g = h
 
+% Definition. Let f:A->B be an arrow.  We say f is epic when, for each
+%             g:B->C and h:B->C, g o f = h o f implies that g = h.
   epic?(f:arr): bool =
-   FORALL (A:obj, g,h:{x:arr | cod(x) = A AND dom(x) = cod(f)}):
+   FORALL (A:obj, g,h:{x:arr | to?(x,A) AND from?(x,cod(f))}):
     g o f = h o f IMPLIES g = h
 
+% Theorem. If f is an isomorphism, then f is both monic and epic.
   iso_monic_epic: THEOREM
    FORALL (f:arr):
     iso?(f) IMPLIES
      (monic?(f) AND epic?(f))
 
+% Definition. Let A be an object.  We call A initial when, for all
+%             objects B, there exists a unique arrow f:A->B.
   initial?(A:obj): bool =
-   FORALL (B:obj): EXISTS (f:arr | dom(f) = A AND cod(f) = B):
+   FORALL (B:obj): EXISTS (f:arr | from?(f,A) AND to?(f,B)):
     FORALL (g:arr | dom(g) = A AND cod(g) = B): g = f
 
-  teminal?(A:obj): bool =
-   FORALL (B:obj): EXISTS (f:arr | dom(f) = B AND cod(f) = A):
+% Definition. Let A be an object.  We call A terminal when, for all
+%             objects B, there exists a unique arrow f:B->A.
+  terminal?(A:obj): bool =
+   FORALL (B:obj): EXISTS (f:arr | from?(f,B) AND to?(f,B)):
     FORALL (g:arr | dom(g) = B AND cod(g) = A): g = f
 
 END category
