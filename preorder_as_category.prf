@@ -1,0 +1,56 @@
+(|preorder_as_category|
+ (|id_TCC1| 0
+  (|id_TCC1-1| NIL 3697235844
+   ("" (GRIND :THEORIES "preorder_as_category") NIL NIL)
+   ((|reflexive| FORMULA-DECL NIL |preorder_as_category| NIL)) NIL))
+ (|composition_TCC1| 0
+  (|composition_TCC1-1| NIL 3697235891
+   ("" (LEMMA "transitive")
+    (("" (SKOLEM-TYPEPRED)
+      (("" (INSTANTIATE -2 ("dom(g!1)" "cod(g!1)" "cod(f!1)"))
+        (("" (GRIND) NIL NIL)) NIL))
+      NIL))
+    NIL)
+   ((|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (ELEMENT FORMAL-TYPE-DECL NIL |preorder_as_category| NIL)
+    (|obj| TYPE-EQ-DECL NIL |preorder_as_category| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (~ FORMAL-CONST-DECL "[ELEMENT, ELEMENT -> bool]" |preorder_as_category|
+     NIL)
+    (|arr| TYPE-EQ-DECL NIL |preorder_as_category| NIL)
+    (|cod| CONST-DECL "obj" |preorder_as_category| NIL)
+    (|dom| CONST-DECL "obj" |preorder_as_category| NIL)
+    (|transitive| FORMULA-DECL NIL |preorder_as_category| NIL))
+   NIL))
+ (|IMP_category_TCC1| 0
+  (|IMP_category_TCC1-1| NIL 3697235891
+   ("" (EXPAND "is_category?")
+    (("" (BDDSIMP)
+      (("1" (EXPAND "assoc?") (("1" (GRIND) NIL NIL)) NIL)
+       ("2" (EXPAND "comp_dom_cod?") (("2" (GRIND) NIL NIL)) NIL)
+       ("3" (EXPAND "unity?") (("3" (GRIND) NIL NIL)) NIL)
+       ("4" (EXPAND "id_dom_cod?") (("4" (GRIND) NIL NIL)) NIL))
+      NIL))
+    NIL)
+   ((|composition| CONST-DECL "arr" |preorder_as_category| NIL)
+    (|cod| CONST-DECL "obj" |preorder_as_category| NIL)
+    (|dom| CONST-DECL "obj" |preorder_as_category| NIL)
+    (|assoc?| CONST-DECL "bool" |category_assumptions| NIL)
+    (|comp_dom_cod?| CONST-DECL "bool" |category_assumptions| NIL)
+    (|id| CONST-DECL "arr" |preorder_as_category| NIL)
+    (|arr| TYPE-EQ-DECL NIL |preorder_as_category| NIL)
+    (~ FORMAL-CONST-DECL "[ELEMENT, ELEMENT -> bool]" |preorder_as_category|
+     NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|obj| TYPE-EQ-DECL NIL |preorder_as_category| NIL)
+    (ELEMENT FORMAL-TYPE-DECL NIL |preorder_as_category| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL)
+    (|unity?| CONST-DECL "bool" |category_assumptions| NIL)
+    (|id_dom_cod?| CONST-DECL "bool" |category_assumptions| NIL)
+    (|is_category?| CONST-DECL "bool" |category_assumptions| NIL))
+   NIL)))
+

@@ -1,0 +1,10 @@
+(|poset_as_category|
+ (|IMP_preorder_as_category_TCC1| 0
+  (|IMP_preorder_as_category_TCC1-1| NIL 3697236087
+   ("" (GRIND :THEORIES "poset_as_category") NIL NIL)
+   ((|reflexive| FORMULA-DECL NIL |poset_as_category| NIL)) NIL))
+ (|IMP_preorder_as_category_TCC2| 0
+  (|IMP_preorder_as_category_TCC2-1| NIL 3697236087
+   ("" (GRIND :THEORIES "poset_as_category") NIL NIL)
+   ((|transitive| FORMULA-DECL NIL |poset_as_category| NIL)) NIL)))
+

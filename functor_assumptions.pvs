@@ -1,0 +1,32 @@
+functor_assumptions [ obj1,arr1,obj2,arr2:TYPE ]: THEORY
+
+BEGIN
+
+ conserves_dom_cod? (dom1,cod1:[arr1 -> obj1],dom2,cod2:[arr2 -> obj2],
+                     Fo:[obj1 -> obj2],Fa:[arr1 -> arr2]): bool =
+   FORALL (f:arr1):
+     Fo(dom1(f)) = dom2(Fa(f)) AND Fo(cod1(f)) = cod2(Fa(f))
+
+ conserves_id? (id1:[obj1 -> arr1],id2:[obj2 -> arr2],
+                Fo:[obj1 -> obj2],Fa:[arr1 -> arr2]): bool =
+   FORALL (A:obj1):
+     Fa(id1(A)) = id2(Fo(A))
+
+ conserves_comp? (dom1,cod1:[arr1 -> obj1],dom2,cod2:[arr2 -> obj2],
+                  comp1:[[f:arr1,{g:arr1 | cod1(g) = dom1(f)}] -> arr1],
+		  comp2:[[f:arr2,{g:arr2 | cod2(g) = dom2(f)}] -> arr2],
+		  Fo:[obj1 -> obj2],Fa:[arr1 -> arr2]): bool =
+   conserves_dom_cod? (dom1,cod1,dom2,cod2,Fo,Fa) IMPLIES
+   FORALL (f:arr1, g:arr1 | cod1(g) = dom1(f)):
+     Fa(comp1(f,g)) = comp2(Fa(f),Fa(g))
+
+ is_functor? (dom1,cod1:[arr1 -> obj1],dom2,cod2:[arr2 -> obj2],
+              id1:[obj1 -> arr1],id2:[obj2 -> arr2],
+	      comp1:[[f:arr1,{g:arr1 | cod1(g) = dom1(f)}] -> arr1],
+	      comp2:[[f:arr2,{g:arr2 | cod2(g) = dom2(f)}] -> arr2],
+	      Fo:[obj1 -> obj2],Fa:[arr1 -> arr2]): bool =
+   conserves_dom_cod? (dom1,cod1,dom2,cod2,Fo,Fa)
+   AND conserves_id? (id1,id2,Fo,Fa)
+   AND conserves_comp? (dom1,cod1,dom2,cod2,comp1,comp2,Fo,Fa)
+
+END functor_assumptions

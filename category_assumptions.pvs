@@ -1,0 +1,30 @@
+category_assumptions [obj,arr:TYPE] : THEORY
+
+BEGIN
+
+ id_dom_cod? (dom,cod:[arr -> obj], id:[obj -> arr]): bool =
+   FORALL (A:obj): dom(id(A)) = A AND cod(id(A)) = A
+
+ unity? (dom,cod:[arr -> obj], id:[obj -> arr],
+         o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr]): bool =
+   id_dom_cod? (dom,cod,id) IMPLIES
+   (FORALL (A:obj, f:arr | dom(f) = A): f o id(A) = f) AND
+   (FORALL (A:obj, g:arr | cod(g) = A): id(A) o g = g)
+
+ comp_dom_cod? (dom,cod:[arr -> obj],
+                o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr]): bool =
+   FORALL (f:arr, g:arr | cod(g) = dom(f)):
+     dom(f o g) = dom(g) AND cod(f o g) = cod(f)
+
+ assoc? (dom,cod:[arr -> obj],
+         o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr]): bool =
+   comp_dom_cod? (dom,cod,o) IMPLIES
+   FORALL (h:arr, g:arr | cod(g) = dom(h), f:arr | cod(f) = dom(g)):
+     h o (g o f) = (h o g) o f
+
+ is_category? (dom,cod:[arr -> obj], id:[obj -> arr],
+               o:[[f:arr, {g:arr | cod(g) = dom(f)}] -> arr]): bool =
+   id_dom_cod? (dom,cod,id) AND unity? (dom,cod,id,o) AND
+   comp_dom_cod? (dom,cod,o) AND assoc? (dom,cod,o)
+
+END category_assumptions

@@ -1,0 +1,29 @@
+monoid_as_category [ ELEMENT: TYPE,
+                     ID: ELEMENT,
+		     o: [ELEMENT, ELEMENT -> ELEMENT]
+		   ]: THEORY
+
+BEGIN
+
+ ASSUMING
+
+  composition_with_identity: ASSUMPTION
+    FORALL (a:ELEMENT):
+      ID o a = a AND a o ID = a
+
+  associativity: ASSUMPTION
+    FORALL (a,b,c:ELEMENT):
+      a o (b o c) = (a o b) o c
+
+ ENDASSUMING
+
+ CORE: TYPE
+ obj: TYPE = {CORE}
+ arr: TYPE = ELEMENT
+ dom (x:arr): obj = CORE
+ cod (x:arr): obj = CORE
+ id (X:obj): arr = ID
+
+ IMPORTING category[obj,arr,dom,cod,id,o]
+
+END monoid_as_category

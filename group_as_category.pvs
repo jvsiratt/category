@@ -1,33 +1,26 @@
 group_as_category [ ELEMENT: TYPE,
                     ID: ELEMENT,
-		    o: [ELEMENT, ELEMENT -> ELEMENT] ]: THEORY
+		    o: [ELEMENT, ELEMENT -> ELEMENT]
+		  ]: THEORY
 
 BEGIN
 
  ASSUMING
 
   composition_with_identity: ASSUMPTION
-   FORALL (a:ELEMENT):
-    ID o a = a AND a o ID = a
+    FORALL (a:ELEMENT):
+      ID o a = a AND a o ID = a
 
-  associativity: ASSUMPTION % This duplicates cat assump
-   FORALL (a,b,c:ELEMENT):
-    a o (b o c) = (a o b) o c
+  associativity: ASSUMPTION
+    FORALL (a,b,c:ELEMENT):
+      a o (b o c) = (a o b) o c
 
   exists_inverse: ASSUMPTION
-   FORALL (a:ELEMENT): EXISTS(a!:ELEMENT):
-    a o a! = ID AND a! o a = ID
+    FORALL (a:ELEMENT): EXISTS (b:ELEMENT):
+      a o b = ID AND b o a = ID
 
  ENDASSUMING
 
-  NEXUS: TYPE
-  obj: TYPE = {NEXUS}
-  arr: TYPE = ELEMENT
-  dom(x:arr):obj = NEXUS
-  cod(x:arr):obj = NEXUS
-  id(X:obj):arr = ID
-  compose(a,b:arr):arr = a o b
-
-  IMPORTING category [obj, arr, dom, cod, id, compose]
+ IMPORTING monoid_as_category[ELEMENT,ID,o]
 
 END group_as_category

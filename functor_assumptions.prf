@@ -1,0 +1,24 @@
+(|functor_assumptions|
+ (|conserves_comp?_TCC1| 0
+  (|conserves_comp?_TCC1-1| NIL 3696973759
+   ("" (SKOLEM-TYPEPRED)
+    (("" (BDDSIMP)
+      (("" (SKOLEM-TYPEPRED)
+        (("" (EXPAND "conserves_dom_cod?")
+          (("" (COPY -2)
+            (("" (INSTANTIATE -1 "f!1")
+              (("" (INSTANTIATE -3 "g!1") (("" (GRIND) NIL NIL)) NIL)) NIL))
+            NIL))
+          NIL))
+        NIL))
+      NIL))
+    NIL)
+   ((|conserves_dom_cod?| CONST-DECL "bool" |functor_assumptions| NIL)
+    (|arr1| FORMAL-TYPE-DECL NIL |functor_assumptions| NIL)
+    (= CONST-DECL "[T, T -> boolean]" |equalities| NIL)
+    (|obj1| FORMAL-TYPE-DECL NIL |functor_assumptions| NIL)
+    (NOT CONST-DECL "[bool -> bool]" |booleans| NIL)
+    (|bool| NONEMPTY-TYPE-EQ-DECL NIL |booleans| NIL)
+    (|boolean| NONEMPTY-TYPE-DECL NIL |booleans| NIL))
+   NIL)))
+

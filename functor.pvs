@@ -1,0 +1,28 @@
+functor [ obj1,arr1 : TYPE,
+          dom1,cod1 : [arr1 -> obj1],
+	  id1 : [obj1 -> arr1],
+	  comp1 : [[f:arr1, {g:arr1 | cod1(g) = dom1(f)}] -> arr1],
+	  obj2,arr2 : TYPE,
+	  dom2,cod2 : [arr2 -> obj2],
+	  id2 : [obj2 -> arr2],
+	  comp2 : [[f:arr2, {g:arr2 | cod2(g) = dom2(f)}] -> arr2],
+	  Fo : [obj1 -> obj2],
+	  Fa : [arr1 -> arr2]
+	]: THEORY
+
+BEGIN
+
+ ASSUMING IMPORTING category_assumptions[obj1,arr1], category_assumptions[obj2,arr2], functor_assumptions[obj1,arr1,obj2,arr2]
+
+  one_is_category: ASSUMPTION
+    is_category?[obj1,arr1] (dom1,cod1,id1,comp1)
+
+  two_is_category: ASSUMPTION
+    is_category?[obj2,arr2] (dom2,cod2,id2,comp2)
+
+  this_is_functor: ASSUMPTION
+    is_functor? (dom1,cod1,dom2,cod2,id1,id2,comp1,comp2,Fo,Fa)
+
+ ENDASSUMING
+
+END functor

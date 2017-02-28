@@ -1,0 +1,11 @@
+(|group_as_category|
+ (|IMP_monoid_as_category_TCC1| 0
+  (|IMP_monoid_as_category_TCC1-1| NIL 3697234685
+   ("" (GRIND :THEORIES "group_as_category") NIL NIL)
+   ((|composition_with_identity| FORMULA-DECL NIL |group_as_category| NIL))
+   NIL))
+ (|IMP_monoid_as_category_TCC2| 0
+  (|IMP_monoid_as_category_TCC2-1| NIL 3697234685
+   ("" (GRIND :THEORIES "group_as_category") NIL NIL)
+   ((|associativity| FORMULA-DECL NIL |group_as_category| NIL)) NIL)))
+

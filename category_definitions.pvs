@@ -1,0 +1,51 @@
+category_definitions [ obj,arr: TYPE,
+                       dom,cod: [arr -> obj],
+		       id: [obj -> arr],
+		       o: [[f:arr, {g:arr | cod(g) = dom(f)}] -> arr]
+		     ]: THEORY
+
+BEGIN
+
+ ASSUMING IMPORTING category_assumptions[obj,arr]
+
+  this_is_category: ASSUMPTION
+    is_category? (dom,cod,id,o)
+
+ ENDASSUMING
+
+ composable? (f,g:arr): bool =
+   cod(g) = dom(f)
+
+ to? (f:arr, A:obj): bool =
+   cod(f) = A
+
+ from? (f:arr, A:obj): bool =
+   dom(f) = A
+
+ inverse? (f:arr, g:arr | composable? (g,f) AND composable? (f,g)): bool =
+   f o g = id(dom(g)) AND g o f = id(dom(f))
+
+ iso? (f:arr): bool =
+   EXISTS (g:arr | composable? (f,g) AND composable? (g,f)):
+     inverse? (f,g)
+
+ isomorphic? (A,B:obj): bool =
+   EXISTS (f:arr | dom(f) = A AND cod(f) = B): iso? (f)
+
+ monic? (f:arr): bool =
+   FORALL (A:obj, g,h:{x:arr | from? (x,A) AND to? (x,dom(f))}):
+     f o g = f o h IMPLIES g = h
+
+ epic? (f:arr): bool =
+   FORALL (A:obj, g,h:{x:arr | to? (x,A) AND from? (x,cod(f))}):
+     g o f = h o f IMPLIES g = h
+
+ initial? (A:obj): bool =
+   FORALL (B:obj): EXISTS (f:arr | from? (f,A) AND to? (f,B)):
+     FORALL (g:arr | from? (g,A) AND to? (g,B)): g = f
+
+ terminal? (A:obj): bool =
+   FORALL (B:obj): EXISTS (f:arr | from? (f,B) AND to? (f,A)):
+     FORALL (g:arr | from? (g,B) AND to? (g,A)): g = f
+
+END category_definitions
