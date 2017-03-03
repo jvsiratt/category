@@ -24,4 +24,8 @@ BEGIN
 
  IMPORTING category[obj,arr,dom,cod,id,composition]
 
+  all_unique: THEOREM
+   FORALL (A,B:obj): FORALL (f,g:{x:arr | from? (x,A) AND to? (x,B)}):
+     f = g
+
 END preorder_as_category

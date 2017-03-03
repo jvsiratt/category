@@ -23,4 +23,7 @@ BEGIN
 
  IMPORTING monoid_as_category[ELEMENT,ID,o]
 
+ all_iso: THEOREM
+   FORALL (f:arr): iso? (f)
+
 END group_as_category

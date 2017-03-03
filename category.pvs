@@ -38,4 +38,14 @@ BEGIN
  iso_monic_epic: THEOREM
    FORALL (f:arr): iso? (f) IMPLIES (monic? (f) AND epic? (f))
 
+ IMPORTING functor_assumptions[obj,arr,obj,arr]
+ trivial_functor: THEOREM
+   is_functor? (dom,cod,dom,cod,id,id,o,o,
+		(LAMBDA (X:obj): X),
+		(LAMBDA (x:arr): x))
+
+ initials_isomorphic: THEOREM
+   FORALL (A,B:obj):
+     (initial? (A) AND initial? (B)) IMPLIES isomorphic? (A,B)
+
 END category
